@@ -29,6 +29,10 @@ func (rc *Client) Get(key string) string {
 	return mes
 }
 
+func (rc *Client) TTL(key string) time.Duration {
+	return rc.Cli.TTL(rc.Ctx, key).Val()
+}
+
 func (rc *Client) GetRaw(key string) (bts []byte, err error) {
 	bts, err = rc.Cli.Get(rc.Ctx, key).Bytes()
 
